@@ -23,7 +23,7 @@ flutter:
   plugin:
     platforms:
       android:
-        androidPackage: it.nplace.downloadpathprovider
+        package: it.nplace.downloadpathprovider
         pluginClass: DownloadPathProviderPlugin
       ios:
         pluginClass: DownloadPathProviderPlugin
