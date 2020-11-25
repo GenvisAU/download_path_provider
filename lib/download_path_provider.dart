@@ -1,9 +1,5 @@
-// You have generated a new plugin project without
-// specifying the `--platforms` flag. A plugin project supports no platforms is generated.
-// To add platforms, run `flutter create -t plugin --platforms <platforms> .` under the same
-// directory. You can also find a detailed instruction on how to add platforms in the `pubspec.yaml` at https://flutter.dev/docs/development/packages-and-plugins/developing-packages#plugin-platforms.
-
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 
@@ -11,8 +7,11 @@ class DownloadPathProvider {
   static const MethodChannel _channel =
       const MethodChannel('download_path_provider');
 
-  static Future<String> get platformVersion async {
-    final String version = await _channel.invokeMethod('getPlatformVersion');
-    return version;
+  static Future<Directory> get downloadsDirectory async {
+    final String path = await _channel.invokeMethod('getDownloadsDirectory');
+    if (path == null) {
+      return null;
+    }
+    return Directory(path);
   }
 }
